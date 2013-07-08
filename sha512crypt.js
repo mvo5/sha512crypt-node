@@ -172,7 +172,8 @@ function b64_sha512crypt(password, salt) {
         // special case for the end of the input
         if (order[i+1] === undefined) {
             char_1 = input.charCodeAt(order[i+0]) & parseInt("00111111", 2);
-            char_2 = input.charCodeAt(order[i+0]) & parseInt("11000000", 2) >>> 6;
+            char_2 = (
+                input.charCodeAt(order[i+0]) & parseInt("11000000", 2)) >>> 6;
             output += tab.charAt(char_1) + tab.charAt(char_2);
         } else {
             char_1 = input.charCodeAt(order[i+0]) & parseInt("00111111", 2);

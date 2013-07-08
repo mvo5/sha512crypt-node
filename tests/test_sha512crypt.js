@@ -51,9 +51,25 @@ suite('sha512crypt', function() {
     });
 
    test('vectors from the drepper paper', function() {
+
        assert.equal(
            sha512crypt.b64_sha512crypt("Hello world!", "saltstring"),
            "$6$saltstring$svn8UoSVapNtMuq1ukKS4tPQd8iKwSMHWjl/O817G3uBnIFNjnQJuesI68u4OTLiBFdcbYEdFCoEOfaS35inz1");
+
+       assert.equal(
+           sha512crypt.b64_sha512crypt(
+               "Hello world!", "$6$rounds=10000$saltstringsaltstring"),
+           "$6$rounds=10000$saltstringsaltst$OW1/O6BYHV6BcXZu8QVeXbDWra3Oeqh0sbHbbMCVNSnCM/UrjmM0Dp8vOuZeHBy/YTBmSK6H9qs/y3RnOaw5v.");
+
+       assert.equal(
+           sha512crypt.b64_sha512crypt(
+               "This is just a test", "$6$rounds=5000$toolongsaltstring"),
+           "$6$rounds=5000$toolongsaltstrin$lQ8jolhgVRVhY4b5pZKaysCLi0QBxGoNeKQzQ3glMhwllF7oGDZxUhx1yxdYcz/e1JSbq3y6JMxxl8audkUEm0");
+
+       assert.equal(
+           sha512crypt.b64_sha512crypt(
+               "a very much longer text to encrypt.  This one even stretches over morethan one line.", "$6$rounds=1400$anotherlongsaltstring"),
+           "$6$rounds=1400$anotherlongsalts$POfYwTEok97VWcjxIiSOjiykti.o/pQs.wPvMxQ6Fm7I6IoYN3CmLs66x9t0oSwbtEW7o7UmJEiDwGqd8p4ur1");
 
        assert.equal(
            sha512crypt.b64_sha512crypt(
@@ -68,30 +84,16 @@ suite('sha512crypt', function() {
 
        assert.equal(
            sha512crypt.b64_sha512crypt(
-               "the minimum number is still observed",
-               "$6$rounds=10$roundstoolow"),
-           "$6$rounds=1000$roundstoolow$kUMsbe306n21p9R.FRkW3IGn.S9NPN0x50YhH1xhLsPuWGsUSklZt58jaTfF4ZEQpyUNGc0dqbpBYYBaHHrsX.");
-
-       assert.equal(
-           sha512crypt.b64_sha512crypt(
                "a short string",
                "$6$rounds=123456$asaltof16chars.."),
            "$6$rounds=123456$asaltof16chars..$BtCwjqMJGx5hrJhZywWvt0RLE8uZ4oPwcelCjmw2kSYu.Ec6ycULevoBK25fs2xXgMNrCzIMVcgEJAstJeonj1");
 
        assert.equal(
            sha512crypt.b64_sha512crypt(
-               "a very much longer text to encrypt.  This one even stretches over morethan one line.", "$6$rounds=1400$anotherlongsaltstring"),
-           "$6$rounds=1400$anotherlongsalts$POfYwTEok97VWcjxIiSOjiykti.o/pQs.wPvMxQ6Fm7I6IoYN3CmLs66x9t0oSwbtEW7o7UmJEiDwGqd8p4ur1");
+               "the minimum number is still observed",
+               "$6$rounds=10$roundstoolow"),
+           "$6$rounds=1000$roundstoolow$kUMsbe306n21p9R.FRkW3IGn.S9NPN0x50YhH1xhLsPuWGsUSklZt58jaTfF4ZEQpyUNGc0dqbpBYYBaHHrsX.");
 
-       assert.equal(
-           sha512crypt.b64_sha512crypt(
-               "This is just a test", "$6$rounds=5000$toolongsaltstring"),
-           "$6$rounds=5000$toolongsaltstrin$lQ8jolhgVRVhY4b5pZKaysCLi0QBxGoNeKQzQ3glMhwllF7oGDZxUhx1yxdYcz/e1JSbq3y6JMxxl8audkUEm0");
-
-       assert.equal(
-           sha512crypt.b64_sha512crypt(
-               "Hello world!", "$6$rounds=10000$saltstringsaltstring"),
-           "$6$rounds=10000$saltstringsaltst$OW1/O6BYHV6BcXZu8QVeXbDWra3Oeqh0sbHbbMCVNSnCM/UrjmM0Dp8vOuZeHBy/YTBmSK6H9qs/y3RnOaw5v.");
    }); 
 
 });
