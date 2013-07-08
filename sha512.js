@@ -498,4 +498,5 @@ function int64add5(dst, a, b, c, d, e)
 if (typeof exports !== 'undefined') {
   exports.rstr_sha512 = rstr_sha512;
   exports.rstr2hex = rstr2hex;
+  exports.b64_hmac_sha512 = b64_hmac_sha512;
 }
