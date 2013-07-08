@@ -95,7 +95,7 @@ function _rstr_sha512crypt(password, salt)
 
     // step 21
     var digest = digest_a;
-    for (i=0; i<5000; i++) {
+    for (i=0; i<rounds; i++) {
         var c_input = "";        
 
         if (i & 1) 
