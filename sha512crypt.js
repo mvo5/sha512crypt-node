@@ -70,10 +70,8 @@ function _sha512crypt_intermediate(password, salt) {
     return intermediate;
 }
 
-function _rstr_sha512crypt(password, salt) 
+function _rstr_sha512crypt(password, salt, rounds) 
 {
-    rounds = 5000;
-
     // steps 1-12
     var digest_a = _sha512crypt_intermediate(password, salt);
 
@@ -122,11 +120,27 @@ function _rstr_sha512crypt(password, salt)
 
 function b64_sha512crypt(password, salt) {
     var magic = "$6$";
+    var rounds = 5000;
+
+    // parse the magic "$" stuff
+    var magic_array = salt.split("$");
+    if (magic_array.length > 1) {
+        if (magic_array[1] !== "6") {
+            var s =  "Got '"+salt+"' but only SHA512 ($6$) algorithm supported";
+            throw new Error(s);
+        }
+        var rounds = parseInt(magic_array[2].split("=")[1]) || 5000;
+        if (rounds < 1000)
+            rounds = 1000;
+        if (rounds > 999999999)
+            rounds = 999999999;
+        var salt = magic_array[3] || salt;
+    }
 
     // salt is max 16 chars long
     salt = salt.substr(0, 16);
 
-    var hash = _rstr_sha512crypt(password, salt);
+    var hash = _rstr_sha512crypt(password, salt, rounds);
    
     var input = hash;
     var output = "";
@@ -173,6 +187,9 @@ function b64_sha512crypt(password, salt) {
                        tab.charAt(char_3) + tab.charAt(char_4));
         }
     }
+
+    if(magic_array.length > 2)
+        magic = "$6$rounds=" + rounds + "$";
 
     return magic + salt + "$" + output;
 }
