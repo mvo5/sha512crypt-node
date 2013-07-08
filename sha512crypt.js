@@ -118,7 +118,7 @@ function _rstr_sha512crypt(password, salt, rounds)
     return digest;
 };
 
-function b64_sha512crypt(password, salt) {
+function sha512crypt(password, salt) {
     var magic = "$6$";
     var rounds = 5000;
 
@@ -198,5 +198,6 @@ function b64_sha512crypt(password, salt) {
 if (typeof exports !== 'undefined') {
   exports._sha512crypt_intermediate = _sha512crypt_intermediate;
   exports._rstr_sha512crypt = _rstr_sha512crypt;
-  exports.b64_sha512crypt = b64_sha512crypt;
+  exports.b64_sha512crypt = sha512crypt;
+  exports.sha512crypt = sha512crypt;
 }
