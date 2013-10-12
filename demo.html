@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script>
+function do_sha512crypt()
+{
+  var hash = sha512crypt(document.forms["pwform"]["password"].value,
+                         document.forms["pwform"]["salt"].value);
+  document.getElementById("hash_p").innerHTML = hash;
+  return false;
+}
+    </script>
+    <script src="sha512.js"></script>
+    <script src="sha512crypt.js"></script>
+
+  </head>
+
+  <body>
+
+    <h1>sha512crypt demo</h1>
+
+    <form name="pwform" action="#">
+      <input type="text" name="password" placeholder="password">
+      <input type="text" name="salt" placeholder="salt">
+      <button type="button" onclick="do_sha512crypt()">Calculate Hash</button> 
+    </form>
+
+    <p></p>
+
+    <div>Hash:
+      <span id="hash_p">None yet</span>
+    </div>
+  </body>
+</html> 
