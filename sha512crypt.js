@@ -35,11 +35,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 if (typeof exports !== 'undefined') {
-    rstr_sha512 = require("./sha512.js").rstr_sha512;
-    binb_sha512 = require("./sha512.js").binb_sha512;
-    hex_sha512 = require("./sha512.js").hex_sha512;
-    rstr2hex =  require("./sha512.js").rstr2hex;
-    rstr2b64 =  require("./sha512.js").rstr2b64;
+    rstr_sha512 = require("./lib/sha512.js").rstr_sha512;
+    binb_sha512 = require("./lib/sha512.js").binb_sha512;
+    hex_sha512 = require("./lib/sha512.js").hex_sha512;
+    rstr2hex =  require("./lib/sha512.js").rstr2hex;
+    rstr2b64 =  require("./lib/sha512.js").rstr2b64;
 }
 
 

@@ -1,0 +1,23 @@
+{
+  "name": "sha512crypt-node",
+  "version": "0.1.0",
+  "author": "Michael Vogt",
+  "description": "Provide sha512crypt algorithm for nodejs",
+  "keywords": ["sha512crypt"],
+  "homepage": "https://github.com/mvo5/sha512crypt-node",
+  "license" : "BSD",
+  "repository": {
+    "url": "https://github.com/mvo5/sha512crypt-node"
+  },
+  "main": "sha512crypt.js",
+  "bin": {
+    "sha512crypt-demo": "./demo.js"
+  },
+  "directories": {
+    "lib": "./lib",
+    "doc": "./doc"
+  },
+  "engines": {
+    "node": "*"
+  }
+}

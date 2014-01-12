@@ -2,8 +2,8 @@
 
 var assert = require('assert');
 
-b64_hmac_sha512 = require("../sha512.js").b64_hmac_sha512;
-rstr2hex = require("../sha512.js").rstr2hex;
+b64_hmac_sha512 = require("../lib/sha512.js").b64_hmac_sha512;
+rstr2hex = require("../lib/sha512.js").rstr2hex;
 
 sha512crypt = require("../sha512crypt.js");
 

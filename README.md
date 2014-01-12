@@ -14,6 +14,12 @@ $ python -c 'import crypt; crypt.crypt("pass", "$6$salt")
 $6$salt$3aEJgflnzWuw1O3tr0IYSmhUY0cZ7iBQeBP392T7RXjLP3TKKu3ddIapQaCpbD4p9ioeGaVIjOHaym7HvCuUm0
 ```
 
+A example how to use it in a html page is provided in:
+```
+doc/demo.html
+```
+
+
 Using the "rounds" parameter as part of the salt:
 ```
 $ ./demo.js pass '$6$rounds=1000$salt'
