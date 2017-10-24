@@ -123,7 +123,7 @@ function _rstr_sha512crypt(password, salt, rounds)
 
 function sha512crypt(password, salt) {
     var magic = "$6$";
-    var rounds = 5000;
+    var rounds;
 
     // parse the magic "$" stuff
     var magic_array = salt.split("$");
@@ -132,18 +132,22 @@ function sha512crypt(password, salt) {
             var s =  "Got '"+salt+"' but only SHA512 ($6$) algorithm supported";
             throw new Error(s);
         }
-        var rounds = parseInt(magic_array[2].split("=")[1]) || 5000;
-        if (rounds < 1000)
-            rounds = 1000;
-        if (rounds > 999999999)
-            rounds = 999999999;
-        var salt = magic_array[3] || salt;
+        rounds = parseInt(magic_array[2].split("=")[1]);
+        if (rounds) {
+            if (rounds < 1000)
+                rounds = 1000;
+            if (rounds > 999999999)
+                rounds = 999999999;
+            salt = magic_array[3] || salt;
+        } else {
+            salt = magic_array[2] || salt;
+        }
     }
 
     // salt is max 16 chars long
     salt = salt.substr(0, 16);
 
-    var hash = _rstr_sha512crypt(password, salt, rounds);
+    var hash = _rstr_sha512crypt(password, salt, rounds || 5000);
    
     var input = hash;
     var output = "";
@@ -192,8 +196,9 @@ function sha512crypt(password, salt) {
         }
     }
 
-    if(magic_array.length > 2)
-        magic = "$6$rounds=" + rounds + "$";
+    if(magic_array.length > 2) {
+        magic = rounds ? "$6$rounds=" + rounds + "$" : "$6$";
+    }
 
     return magic + salt + "$" + output;
 }
