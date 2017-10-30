@@ -30,6 +30,11 @@ suite('sha512crypt', function() {
         assert.equal(hash, "$6$salt$3aEJgflnzWuw1O3tr0IYSmhUY0cZ7iBQeBP392T7RXjLP3TKKu3ddIapQaCpbD4p9ioeGaVIjOHaym7HvCuUm0")
     });
 
+    test('b64_sha512crypt with $6$', function() {
+        var hash = sha512crypt.b64_sha512crypt('pass', '$6$salt');
+        assert.equal(hash, "$6$salt$3aEJgflnzWuw1O3tr0IYSmhUY0cZ7iBQeBP392T7RXjLP3TKKu3ddIapQaCpbD4p9ioeGaVIjOHaym7HvCuUm0")
+    });
+
     test('b64_sha512crypt long', function() {
         var hash = sha512crypt.b64_sha512crypt('passpasspasspasspasspasspasspasspasspasspasspasspasspasspasspasspasspasspasspass', 'salt');
         assert.equal(hash, "$6$salt$3VcgQdxRuwcYKXsn4jQtLCSSE9n4hzkDPXfu5fhBbJb2E9LUjXhvcxUL1CP.K5UQ3Uti3GAxyxvg/cJXl0Bqr1");
