@@ -56,6 +56,7 @@ suite('sha512crypt', function() {
     });
 
    test('vectors from the drepper paper', function() {
+       this.timeout(15000);
 
        assert.equal(
            sha512crypt.b64_sha512crypt("Hello world!", "saltstring"),
