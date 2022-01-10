@@ -41,7 +41,7 @@ Tests
 
 Tests are done via mocha, see REQUIREMENTS for details.
 ```
-$ npm install mocha nodeunit
+$ npm install mocha
 ...
 $ cd tests
 $ make
