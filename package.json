@@ -22,6 +22,9 @@
   "engines": {
     "node": "*"
   },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha -u tdd"
+  },
   "dependencies": {
     "mocha": "^9.1.3"
   }
