@@ -43,11 +43,24 @@ Tests are done via mocha, see REQUIREMENTS for details.
 ```
 $ npm install mocha
 ...
-$ cd tests
-$ make
-nodejs ../node_modules/.bin/mocha -u tdd test_sha512crypt.js
+$ npm test
 
-  ․․․․․․․
+> sha512crypt-node@1.0.0 test
+> ./node_modules/mocha/bin/mocha -u tdd
 
-  7 passing (2 seconds)
+
+
+  sha512crypt
+    ✔ sha512crypt_intermediate short
+    ✔ sha512crypt_intermediate long
+    ✔ rstr_sha512crypt (153ms)
+    ✔ b64_sha512crypt (65ms)
+    ✔ b64_sha512crypt with $6$ (70ms)
+    ✔ b64_sha512crypt long (137ms)
+    ✔ b64_sha512crypt long salt (106ms)
+    ✔ wrong salt constant
+    ✔ vectors from the drepper paper (3959ms)
+
+
+  9 passing (5s)
 ```
