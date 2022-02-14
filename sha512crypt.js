@@ -34,6 +34,12 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+var rstr_sha512;
+var binb_sha512;
+var hex_sha512;
+var rstr2hex;
+var rstr2b64;
+
 if (typeof exports !== 'undefined') {
     rstr_sha512 = require("./lib/sha512.js").rstr_sha512;
     binb_sha512 = require("./lib/sha512.js").binb_sha512;
@@ -41,7 +47,6 @@ if (typeof exports !== 'undefined') {
     rstr2hex =  require("./lib/sha512.js").rstr2hex;
     rstr2b64 =  require("./lib/sha512.js").rstr2b64;
 }
-
 
 function _extend(source, size_ref) {
     var extended = "";
