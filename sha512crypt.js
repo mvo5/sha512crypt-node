@@ -50,7 +50,7 @@ if (typeof exports !== 'undefined') {
 
 function _extend(source, size_ref) {
     var extended = "";
-    for (i=0;i<Math.floor(size_ref/64);i++)
+    for (var i=0;i<Math.floor(size_ref/64);i++)
         extended += source;
     extended += source.substr(0, size_ref % 64);
     return extended;
@@ -66,7 +66,7 @@ function _sha512crypt_intermediate(password, salt) {
     var digest_b_extended = _extend(digest_b, password.length);
 
     var intermediate_input = password + salt + digest_b_extended;
-    for (cnt = key_len; cnt > 0; cnt >>= 1) {
+    for (var cnt = key_len; cnt > 0; cnt >>= 1) {
         if ((cnt & 1) != 0)
             intermediate_input += digest_b
         else
@@ -84,7 +84,7 @@ function _rstr_sha512crypt(password, salt, rounds)
 
     // step 13-15
     var dp_input = "";
-    for (i=0;i<password.length;i++)
+    for (var i=0;i<password.length;i++)
         dp_input += password;
     var dp = rstr_sha512(dp_input);
     // step 16
@@ -92,7 +92,7 @@ function _rstr_sha512crypt(password, salt, rounds)
 
     // step 17-19
     var ds_input = "";
-    for (i=0; i < (16+digest_a.charCodeAt(0)); i++)
+    for (var i=0; i < (16+digest_a.charCodeAt(0)); i++)
         ds_input += salt;
     var ds = rstr_sha512(ds_input);
     // step 20
@@ -101,7 +101,7 @@ function _rstr_sha512crypt(password, salt, rounds)
     // step 21
     var digest = digest_a;
     var c_input = "";
-    for (i=0; i<rounds; i++) {
+    for (var i=0; i<rounds; i++) {
         c_input = "";        
 
         if (i & 1) 
@@ -180,22 +180,22 @@ function sha512crypt(password, salt) {
                   19, 61, 40,
                   41, 20, 62,
                   63];
-    for (i=0; i < input.length; i+=3) {
+    for (var i=0; i < input.length; i+=3) {
         // special case for the end of the input
         if (order[i+1] === undefined) {
-            char_1 = input.charCodeAt(order[i+0]) & parseInt("00111111", 2);
-            char_2 = (
+            var char_1 = input.charCodeAt(order[i+0]) & parseInt("00111111", 2);
+            var char_2 = (
                 input.charCodeAt(order[i+0]) & parseInt("11000000", 2)) >>> 6;
             output += tab.charAt(char_1) + tab.charAt(char_2);
         } else {
-            char_1 = input.charCodeAt(order[i+0]) & parseInt("00111111", 2);
-            char_2 = (
+            var char_1 = input.charCodeAt(order[i+0]) & parseInt("00111111", 2);
+            var char_2 = (
                 ((input.charCodeAt(order[i+0]) & parseInt("11000000", 2)) >>> 6) |
                     (input.charCodeAt(order[i+1]) & parseInt("00001111", 2)) << 2);
-            char_3 = (
+            var char_3 = (
                 ((input.charCodeAt(order[i+1]) & parseInt("11110000", 2)) >> 4) | 
                     (input.charCodeAt(order[i+2]) & parseInt("00000011", 2)) << 4);
-            char_4 = (input.charCodeAt(order[i+2]) & parseInt("11111100", 2)) >>> 2;
+            var char_4 = (input.charCodeAt(order[i+2]) & parseInt("11111100", 2)) >>> 2;
             output += (tab.charAt(char_1) + tab.charAt(char_2) + 
                        tab.charAt(char_3) + tab.charAt(char_4));
         }
